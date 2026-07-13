@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://takumi-k.net/global/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/about.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/zh/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/about.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/about.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/performance.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/performance.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/performance.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/performance.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/zh/performance.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/performance.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/performance.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/performance.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/works.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/works.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/works.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/works.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/zh/works.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/works.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/works.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/works.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/contact.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/contact.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://takumi-k.net/global/zh/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://takumi-k.net/global/contact.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://takumi-k.net/global/zh/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://takumi-k.net/global/contact.html" />
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+</urlset>
