@@ -162,13 +162,24 @@
 }
   </script>
   <!-- SEO: end -->
+  <!-- PWA: start -->
+  <meta name="application-name" content="Takumi Komuten">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Takumi">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="./assets/icons/icon-192.png">
+  <link rel="icon" sizes="512x512" href="./assets/icons/icon-512.png">
+  <!-- PWA: end -->
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/site.css">
 </head>
 <body data-page="about">
   <header class="site-header">
     <a class="brand" href="./index.html"><span class="brand-mark">匠</span><span><span class="brand-name">Takumi Komuten</span><span class="brand-place" data-copy="brandPlace">Izumisano, Osaka</span></span></a>
-    <nav class="main-nav" data-nav><a href="./index.html" data-copy="navHome">Home</a><a class="active" href="./about.html" data-copy="navAbout">About</a><a href="./performance.html" data-copy="navPerformance">Performance</a><a href="./works.html" data-copy="navWorks">Works</a><a href="./contact.html" data-copy="navContact">Contact</a></nav>
+    <nav class="main-nav" data-nav><a href="./index.html" data-copy="navHome">Home</a><a href="./app.html" data-copy="navApp">App</a><a class="active" href="./about.html" data-copy="navAbout">About</a><a href="./performance.html" data-copy="navPerformance">Performance</a><a href="./works.html" data-copy="navWorks">Works</a><a href="./contact.html" data-copy="navContact">Contact</a></nav>
     <div class="header-tools"><div class="language-switch"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="zh" aria-pressed="false">中文</button></div><button class="menu-toggle" type="button" data-menu-toggle aria-label="Menu" aria-expanded="false"><span></span><span></span></button></div>
   </header>
   <main>
