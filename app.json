@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Takumi Concierge",
+    "slug": "takumi-concierge",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "takumi",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "net.takumi-k.concierge"
+    },
+    "android": {
+      "package": "net.takumik.concierge",
+      "adaptiveIcon": {
+        "backgroundColor": "#0d1110"
+      }
+    },
+    "assetBundlePatterns": [
+      "assets/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "local-mvp"
+      }
+    }
+  }
+}
