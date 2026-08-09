@@ -42,6 +42,27 @@ python3 -m http.server 8000
 npm run test:ai-studio
 ```
 
+### Gemini API接続
+
+`api/ai-render.mjs` は Vercel Functions で動かすサーバー側APIです。
+GitHub PagesだけではAPIキーを安全に保持できないため、AI生成を有効にする場合はVercel等にデプロイし、環境変数 `GEMINI_API_KEY` を設定してください。
+
+推奨モデル:
+
+```text
+GEMINI_IMAGE_MODEL=gemini-3.1-flash-image
+GEMINI_IMAGE_SIZE=1K
+GEMINI_ASPECT_RATIO=4:3
+```
+
+別ドメインのGitHub PagesからAPIを呼ぶ場合は、Vercel側に以下のように許可ドメインを設定します。
+
+```text
+ALLOWED_ORIGINS=https://your-github-username.github.io,https://your-domain.example
+```
+
+スタッフ画面の `AI API endpoint` には、同じVercelプロジェクトで運用するなら `/api/ai-render` を入力します。一度入力した値はブラウザに保存されます。
+
 ## 次の本番化ステップ
 
 - Supabaseでログイン、顧客、案件、問い合わせ、写真保存を追加

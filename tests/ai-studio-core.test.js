@@ -81,3 +81,27 @@ test("summarizeWorkspace returns compact state for backend handoff", () => {
     }
   );
 });
+
+test("Gemini API helper validates common image magic bytes", async () => {
+  const api = await import("../api/ai-render.mjs");
+  assert.equal(api.detectMime(Buffer.from([0xff, 0xd8, 0xff, 0x00])), "image/jpeg");
+  assert.equal(api.detectMime(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x00, 0x00, 0x00, 0x00])), "image/png");
+  assert.equal(api.detectMime(Buffer.from("RIFF0000WEBP", "ascii")), "image/webp");
+  assert.equal(api.detectMime(Buffer.from("not-an-image", "utf8")), "");
+});
+
+test("Gemini API helper extracts returned output_image data", async () => {
+  const api = await import("../api/ai-render.mjs");
+  assert.deepEqual(
+    api.findOutputImage({
+      output_image: {
+        data: "abc123",
+        mime_type: "image/jpeg"
+      }
+    }),
+    {
+      data: "abc123",
+      mime_type: "image/jpeg"
+    }
+  );
+});

@@ -179,6 +179,28 @@
     elements.generationBrief.textContent = brief;
   }
 
+  function restoreEndpoint() {
+    try {
+      const stored = window.localStorage.getItem("takumiAiEndpoint");
+      if (stored) {
+        elements.aiEndpoint.value = stored;
+        return;
+      }
+      const isLocal = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
+      if (!isLocal) elements.aiEndpoint.value = "/api/ai-render";
+    } catch (error) {
+    }
+  }
+
+  function rememberEndpoint() {
+    try {
+      const value = elements.aiEndpoint.value.trim();
+      if (value) window.localStorage.setItem("takumiAiEndpoint", value);
+      else window.localStorage.removeItem("takumiAiEndpoint");
+    } catch (error) {
+    }
+  }
+
   function currentBrief() {
     return core.buildGenerationBrief({
       projectType: elements.projectType.value,
@@ -449,7 +471,7 @@
 
     const payload = await response.json();
     if (payload.imageUrl) return payload.imageUrl;
-    if (payload.imageBase64) return `data:image/png;base64,${payload.imageBase64}`;
+    if (payload.imageBase64) return `data:${payload.mimeType || "image/png"};base64,${payload.imageBase64}`;
     throw new Error("AI生成結果の画像URLが見つかりません。");
   }
 
@@ -551,6 +573,7 @@
     elements.downloadOutput.addEventListener("click", downloadResult);
     elements.exportJson.addEventListener("click", downloadJson);
     elements.copyBrief.addEventListener("click", copyBrief);
+    elements.aiEndpoint.addEventListener("input", rememberEndpoint);
     elements.projectType.addEventListener("change", updateBrief);
 
     [
@@ -575,6 +598,7 @@
   }
 
   bindEvents();
+  restoreEndpoint();
   updateBrief();
   registerServiceWorker();
 })();
