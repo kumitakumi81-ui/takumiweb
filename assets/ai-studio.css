@@ -1,0 +1,529 @@
+.staff-ai-page {
+  min-height: 100vh;
+  color: var(--paper);
+  background:
+    linear-gradient(90deg, rgba(158, 216, 208, 0.14) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(247, 242, 232, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(182, 117, 60, 0.16), transparent 42%),
+    var(--sumi);
+  background-size: 96px 96px, 96px 96px, auto, auto;
+}
+
+.staff-ai-page [hidden] {
+  display: none !important;
+}
+
+.staff-header {
+  background: rgba(13, 17, 16, 0.86);
+}
+
+.staff-badge {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  border: 1px solid rgba(158, 216, 208, 0.5);
+  padding: 0 13px;
+  color: var(--aqua);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.staff-ai-page .menu-toggle {
+  min-height: 44px;
+}
+
+.studio-shell {
+  width: min(100% - 32px, 1480px);
+  margin: 0 auto;
+  padding: 104px 0 28px;
+}
+
+.studio-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0 18px;
+}
+
+.studio-kicker {
+  margin: 0 0 6px;
+  color: var(--aqua);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.studio-title h1 {
+  margin: 0;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: clamp(2rem, 5vw, 4.7rem);
+  line-height: 0.95;
+}
+
+.studio-status {
+  min-width: 144px;
+  border-left: 2px solid var(--cinnabar);
+  padding: 9px 0 9px 14px;
+  color: rgba(247, 242, 232, 0.78);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.studio-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, 320px) minmax(0, 1fr) minmax(270px, 360px);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.studio-panel,
+.studio-stage-panel {
+  min-width: 0;
+  border: 1px solid rgba(247, 242, 232, 0.16);
+  background:
+    linear-gradient(145deg, rgba(247, 242, 232, 0.08), rgba(13, 17, 16, 0.42)),
+    rgba(21, 25, 24, 0.82);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+}
+
+.studio-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border-bottom: 1px solid rgba(247, 242, 232, 0.12);
+  padding-bottom: 12px;
+}
+
+.panel-index {
+  color: var(--copper);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.upload-zone {
+  display: grid;
+  gap: 5px;
+  min-height: 84px;
+  align-content: center;
+  border: 1px dashed rgba(158, 216, 208, 0.5);
+  padding: 14px;
+  background: rgba(158, 216, 208, 0.06);
+  cursor: pointer;
+}
+
+.upload-zone input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.upload-title {
+  color: var(--paper);
+  font-weight: 900;
+}
+
+.upload-meta {
+  color: rgba(247, 242, 232, 0.62);
+  font-size: 0.78rem;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.studio-panel label,
+.object-controls label {
+  display: grid;
+  gap: 6px;
+}
+
+.studio-panel label span,
+.object-controls label span {
+  color: rgba(247, 242, 232, 0.68);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.studio-panel input,
+.studio-panel select,
+.studio-panel textarea {
+  width: 100%;
+  border: 1px solid rgba(247, 242, 232, 0.16);
+  border-radius: 0;
+  background: rgba(13, 17, 16, 0.56);
+  color: var(--paper);
+  padding: 10px 11px;
+  outline: 0;
+}
+
+.studio-panel .upload-zone input {
+  width: 1px;
+  height: 1px;
+  border: 0;
+  padding: 0;
+}
+
+.studio-panel textarea {
+  resize: vertical;
+}
+
+.studio-panel input:focus,
+.studio-panel select:focus,
+.studio-panel textarea:focus {
+  border-color: rgba(158, 216, 208, 0.72);
+  box-shadow: 0 0 0 3px rgba(158, 216, 208, 0.12);
+}
+
+.studio-stage-panel {
+  display: grid;
+  grid-template-rows: auto minmax(420px, 1fr) auto;
+  overflow: hidden;
+}
+
+.stage-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid rgba(247, 242, 232, 0.13);
+  padding: 12px;
+}
+
+.segmented {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(247, 242, 232, 0.16);
+  background: rgba(247, 242, 232, 0.05);
+}
+
+.segmented button,
+.ghost-button,
+.prompt-head button {
+  min-height: 38px;
+  border: 0;
+  color: rgba(247, 242, 232, 0.74);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.segmented button {
+  min-width: 78px;
+  padding: 0 13px;
+}
+
+.segmented button.active {
+  color: var(--sumi);
+  background: var(--aqua);
+}
+
+.stage-actions,
+.result-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ghost-button {
+  border: 1px solid rgba(247, 242, 232, 0.18);
+  padding: 0 12px;
+  background: rgba(247, 242, 232, 0.05);
+}
+
+.ghost-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.44;
+}
+
+.workspace-wrap {
+  min-width: 0;
+  min-height: 0;
+  padding: 14px;
+}
+
+.photo-workspace {
+  position: relative;
+  display: grid;
+  min-height: 420px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(247, 242, 232, 0.12);
+  background:
+    linear-gradient(90deg, rgba(247, 242, 232, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(247, 242, 232, 0.055) 1px, transparent 1px),
+    rgba(8, 11, 10, 0.78);
+  background-size: 32px 32px;
+  touch-action: none;
+}
+
+#sceneCanvas {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  cursor: crosshair;
+}
+
+.object-layer {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(158, 216, 208, 0.82);
+  background: rgba(158, 216, 208, 0.08);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+  touch-action: none;
+  cursor: grab;
+}
+
+.object-layer:active {
+  cursor: grabbing;
+}
+
+.object-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 18px 20px rgba(0, 0, 0, 0.36));
+}
+
+.object-anchor {
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--sumi);
+  background: var(--aqua);
+}
+
+.workspace-empty {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  color: rgba(247, 242, 232, 0.68);
+  text-transform: uppercase;
+}
+
+.workspace-empty strong {
+  color: var(--paper);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 1.8rem;
+}
+
+.workspace-empty span {
+  color: var(--aqua);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.object-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border-top: 1px solid rgba(247, 242, 232, 0.13);
+  padding: 12px;
+}
+
+.object-controls input {
+  width: 100%;
+  accent-color: var(--aqua);
+}
+
+.prompt-box {
+  min-height: 230px;
+  border: 1px solid rgba(247, 242, 232, 0.14);
+  background: rgba(8, 11, 10, 0.64);
+}
+
+.prompt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(247, 242, 232, 0.12);
+  padding: 8px 10px;
+  color: rgba(247, 242, 232, 0.76);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.prompt-head button {
+  min-height: 40px;
+  padding: 0 8px;
+  color: var(--aqua);
+}
+
+#generationBrief {
+  max-height: 260px;
+  margin: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  color: rgba(247, 242, 232, 0.8);
+  padding: 12px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.primary-action {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  background:
+    linear-gradient(135deg, var(--cinnabar), var(--copper));
+  color: var(--paper);
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 0 14px 32px rgba(201, 68, 45, 0.26);
+}
+
+.result-frame {
+  position: relative;
+  display: grid;
+  min-height: 230px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(247, 242, 232, 0.14);
+  background:
+    linear-gradient(90deg, rgba(247, 242, 232, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(247, 242, 232, 0.055) 1px, transparent 1px),
+    rgba(8, 11, 10, 0.64);
+  background-size: 24px 24px;
+}
+
+.result-frame img {
+  width: 100%;
+  height: 100%;
+  max-height: 360px;
+  object-fit: contain;
+}
+
+.result-empty {
+  color: rgba(247, 242, 232, 0.46);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1160px) {
+  .studio-grid {
+    grid-template-columns: minmax(230px, 300px) minmax(0, 1fr);
+  }
+
+  .output-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 820px) {
+  .staff-nav {
+    position: fixed;
+    top: 73px;
+    left: 0;
+    right: 0;
+    display: none;
+    border-bottom: 1px solid rgba(247, 242, 232, 0.12);
+    background: rgba(13, 17, 16, 0.95);
+    padding: 10px 16px;
+  }
+
+  body.menu-open .staff-nav {
+    display: flex;
+  }
+
+  .staff-badge {
+    display: none;
+  }
+
+  .studio-shell {
+    width: min(100% - 20px, 1480px);
+    padding-top: 92px;
+  }
+
+  .studio-title {
+    align-items: start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .studio-title h1 {
+    font-size: 2.45rem;
+  }
+
+  .studio-status {
+    width: 100%;
+  }
+
+  .studio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-stage-panel {
+    grid-row: 1;
+    grid-template-rows: auto minmax(320px, auto) auto;
+  }
+
+  .stage-topbar,
+  .object-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .segmented {
+    width: 100%;
+  }
+
+  .stage-actions,
+  .result-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-workspace {
+    min-height: 320px;
+  }
+
+  .object-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .studio-panel,
+  .workspace-wrap {
+    padding: 10px;
+  }
+
+  .stage-actions,
+  .result-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .ghost-button,
+  .segmented button {
+    min-height: 44px;
+  }
+}

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "expo start",
     "ios": "expo start --ios",
-    "android": "expo start --android"
+    "android": "expo start --android",
+    "test:ai-studio": "node --test tests/ai-studio-core.test.js"
   },
   "dependencies": {
     "expo": "~54.0.0",

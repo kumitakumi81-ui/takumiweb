@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Staff AI Studio | Takumi Komuten</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0d1110">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./staff-ai.webmanifest">
+  <link rel="stylesheet" href="./assets/site.css">
+  <link rel="stylesheet" href="./assets/ai-studio.css?v=6">
+</head>
+<body class="staff-ai-page" data-page="staff-ai">
+  <header class="site-header staff-header">
+    <a class="brand" href="./index.html" aria-label="Takumi Komuten">
+      <span class="brand-mark">匠</span>
+      <span><span class="brand-name">Takumi Komuten</span><span class="brand-place">AI Proposal Studio</span></span>
+    </a>
+    <nav class="main-nav staff-nav" aria-label="Staff navigation">
+      <a href="./index.html">Site</a>
+      <a href="./works.html">Works</a>
+      <a class="active" href="./staff-ai.html">AI Studio</a>
+    </nav>
+    <div class="header-tools">
+      <span class="staff-badge">Staff</span>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="studio-shell">
+    <section class="studio-title">
+      <div>
+        <p class="studio-kicker">Takumi proposal renderer</p>
+        <h1>施工AIスタジオ</h1>
+      </div>
+      <div class="studio-status" id="studioStatus" role="status" aria-live="polite">待機中</div>
+    </section>
+
+    <section class="studio-grid" aria-label="AI construction image studio">
+      <aside class="studio-panel input-panel" aria-label="Project input">
+        <div class="panel-head">
+          <span class="panel-index">01</span>
+          <h2>案件入力</h2>
+        </div>
+
+        <label class="upload-zone" for="sceneUpload">
+          <input id="sceneUpload" type="file" accept="image/*" capture="environment">
+          <span class="upload-title">現場写真</span>
+          <span class="upload-meta" id="sceneMeta">未選択</span>
+        </label>
+
+        <label class="upload-zone" for="referenceUpload">
+          <input id="referenceUpload" type="file" accept="image/*">
+          <span class="upload-title">家具・デッキ参考写真</span>
+          <span class="upload-meta" id="referenceMeta">未選択</span>
+        </label>
+
+        <div class="field-grid">
+          <label>
+            <span>対象</span>
+            <select id="projectType">
+              <option value="wooddeck">ウッドデッキ</option>
+              <option value="furniture">家具</option>
+              <option value="storage">収納・造作棚</option>
+              <option value="exterior">外構・庭</option>
+              <option value="interior">内装</option>
+            </select>
+          </label>
+
+          <label>
+            <span>素材</span>
+            <input id="material" type="text" value="明るい木目、自然な艶">
+          </label>
+        </div>
+
+        <label>
+          <span>寸法</span>
+          <input id="dimensions" type="text" value="幅3.6m、奥行2.4m">
+        </label>
+
+        <label>
+          <span>現場メモ</span>
+          <textarea id="sceneNote" rows="3">掃き出し窓の前の庭</textarea>
+        </label>
+
+        <label>
+          <span>参考物メモ</span>
+          <textarea id="objectNote" rows="3">参考写真と同じ色・形・素材感</textarea>
+        </label>
+
+        <label>
+          <span>配置条件</span>
+          <textarea id="placementNote" rows="3">窓の高さに合わせ、既存の植栽は残す</textarea>
+        </label>
+      </aside>
+
+      <section class="studio-stage-panel" aria-label="Photo editor">
+        <div class="stage-topbar">
+          <div class="segmented" role="group" aria-label="Edit mode">
+            <button type="button" class="active" data-tool="mask">範囲</button>
+            <button type="button" data-tool="object">配置</button>
+          </div>
+          <div class="stage-actions">
+            <button type="button" class="ghost-button" id="clearMask">範囲クリア</button>
+            <button type="button" class="ghost-button" id="centerObject">中央配置</button>
+          </div>
+        </div>
+
+        <div class="workspace-wrap">
+          <div class="photo-workspace" id="workspace">
+            <canvas id="sceneCanvas"></canvas>
+            <div class="object-layer" id="objectLayer" hidden>
+              <img id="referenceObject" alt="Reference object">
+              <span class="object-anchor"></span>
+            </div>
+            <div class="workspace-empty" id="workspaceEmpty">
+              <strong>現場写真</strong>
+              <span>Upload</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="object-controls">
+          <label>
+            <span>サイズ</span>
+            <input id="objectScale" type="range" min="70" max="420" value="190">
+          </label>
+          <label>
+            <span>回転</span>
+            <input id="objectRotation" type="range" min="-35" max="35" value="0">
+          </label>
+        </div>
+      </section>
+
+      <aside class="studio-panel output-panel" aria-label="Generation output">
+        <div class="panel-head">
+          <span class="panel-index">02</span>
+          <h2>生成</h2>
+        </div>
+
+        <label>
+          <span>AI API endpoint</span>
+          <input id="aiEndpoint" type="url" placeholder="/api/ai-render">
+        </label>
+
+        <div class="prompt-box">
+          <div class="prompt-head">
+            <span>生成指示</span>
+            <button type="button" id="copyBrief">コピー</button>
+          </div>
+          <pre id="generationBrief"></pre>
+        </div>
+
+        <button type="button" class="primary-action" id="generatePreview">施工後イメージを作成</button>
+
+        <div class="result-frame" id="resultFrame">
+          <img id="resultImage" alt="Generated construction preview" hidden>
+          <div class="result-empty" id="resultEmpty">Preview</div>
+        </div>
+
+        <div class="result-actions">
+          <button type="button" class="ghost-button" id="downloadOutput" disabled>画像保存</button>
+          <button type="button" class="ghost-button" id="exportJson">JSON保存</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./assets/ai-studio-core.js?v=6"></script>
+  <script src="./assets/ai-studio.js?v=6"></script>
+</body>
+</html>

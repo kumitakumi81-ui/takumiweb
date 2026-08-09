@@ -23,6 +23,25 @@ npm start
 
 表示されたQRコードをiPhone/AndroidのExpo Goで読み取ると確認できます。
 
+## スタッフ向けAI施工スタジオ
+
+`staff-ai.html` はスマホ・PC両対応のWebアプリ型スタッフツールです。
+現場写真、家具・ウッドデッキ等の参考写真、写真上の範囲指定、配置、寸法メモから生成指示を作り、AI API接続前でもブラウザ内で合成プレビューを確認できます。
+
+静的確認:
+
+```bash
+python3 -m http.server 8000
+```
+
+その後 `http://localhost:8000/staff-ai.html` を開きます。
+
+テスト:
+
+```bash
+npm run test:ai-studio
+```
+
 ## 次の本番化ステップ
 
 - Supabaseでログイン、顧客、案件、問い合わせ、写真保存を追加
