@@ -106,13 +106,23 @@ export function findOutputImage(value) {
   if (!value || typeof value !== "object") return null;
   if (value.output_image?.data) return value.output_image;
   if (value.outputImage?.data) return value.outputImage;
-  if (Array.isArray(value.output)) {
-    const found = value.output.find((item) => item?.type === "image" && item.data);
-    if (found) return found;
+  // direct base64 fields sometimes used
+  if (value.type === "image" && value.data) return value;
+  if (value.mime_type && value.data && typeof value.data === "string") return value;
+  // Gemini generateContent-style: candidates[].content.parts[].inline_data / inlineData
+  const inline = value.inline_data || value.inlineData;
+  if (inline?.data) {
+    return { data: inline.data, mime_type: inline.mime_type || inline.mimeType };
   }
-  if (Array.isArray(value.steps)) {
-    for (const step of value.steps) {
-      const found = findOutputImage(step);
+  for (const key of ["output", "steps", "candidates", "parts", "content", "outputs", "images", "data"]) {
+    const child = value[key];
+    if (Array.isArray(child)) {
+      for (const item of child) {
+        const found = findOutputImage(item);
+        if (found) return found;
+      }
+    } else if (child && typeof child === "object") {
+      const found = findOutputImage(child);
       if (found) return found;
     }
   }
@@ -144,32 +154,51 @@ async function callGemini({ brief, workspace, scene, reference }) {
   if (sceneInput) input.push(sceneInput);
   if (referenceInput) input.push(referenceInput);
 
-  const response = await fetch(GEMINI_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-goog-api-key": apiKey
-    },
-    body: JSON.stringify({
-      model: process.env.GEMINI_IMAGE_MODEL || "gemini-3.1-flash-image",
-      input,
-      store: false,
-      response_format: {
-        type: "image",
-        mime_type: process.env.GEMINI_OUTPUT_MIME || "image/jpeg",
-        aspect_ratio: process.env.GEMINI_ASPECT_RATIO || "4:3",
-        image_size: process.env.GEMINI_IMAGE_SIZE || "1K"
-      }
-    })
-  });
+  let response;
+  try {
+    response = await fetch(GEMINI_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": apiKey
+      },
+      body: JSON.stringify({
+        model: process.env.GEMINI_IMAGE_MODEL || "gemini-3.1-flash-image",
+        input,
+        store: false,
+        response_format: {
+          type: "image",
+          mime_type: process.env.GEMINI_OUTPUT_MIME || "image/jpeg",
+          aspect_ratio: process.env.GEMINI_ASPECT_RATIO || "4:3",
+          image_size: process.env.GEMINI_IMAGE_SIZE || "1K"
+        }
+      })
+    });
+  } catch (err) {
+    throw new Error(`GEMINI_FETCH_FAILED: ${err?.message || err}`);
+  }
 
-  const payload = await response.json().catch(() => ({}));
+  const rawText = await response.text();
+  let payload = {};
+  try {
+    payload = rawText ? JSON.parse(rawText) : {};
+  } catch {
+    payload = { _raw: rawText };
+  }
+
   if (!response.ok) {
-    throw new Error(payload.error?.message || "GEMINI_REQUEST_FAILED");
+    const msg =
+      payload?.error?.message ||
+      payload?.message ||
+      (typeof payload._raw === "string" ? payload._raw.slice(0, 400) : JSON.stringify(payload).slice(0, 400));
+    throw new Error(`GEMINI_HTTP_${response.status}: ${msg}`);
   }
 
   const outputImage = findOutputImage(payload);
-  if (!outputImage?.data) throw new Error("NO_IMAGE_RETURNED");
+  if (!outputImage?.data) {
+    const keys = payload && typeof payload === "object" ? Object.keys(payload).join(",") : typeof payload;
+    throw new Error(`NO_IMAGE_RETURNED (top-level keys: ${keys})`);
+  }
 
   return {
     imageBase64: outputImage.data,
@@ -213,6 +242,9 @@ export async function POST(request) {
     return json(200, result, headers);
   } catch (error) {
     const message = error.message || "";
+    // Log full detail to Vercel runtime logs
+    console.error("[ai-render] generation failed:", message);
+
     if (message.includes("TOO_LARGE")) {
       return json(413, { error: "Image file is too large" }, headers);
     }
@@ -220,8 +252,9 @@ export async function POST(request) {
       return json(400, { error: "Invalid image file" }, headers);
     }
     if (message === "MISSING_API_KEY") {
-      return json(500, { error: "Gemini API is not configured" }, headers);
+      return json(500, { error: "Gemini API is not configured (GEMINI_API_KEY missing)" }, headers);
     }
-    return json(502, { error: "AI image generation failed" }, headers);
+    // Surface the real underlying reason instead of a blank 502.
+    return json(502, { error: "AI image generation failed", detail: message }, headers);
   }
 }

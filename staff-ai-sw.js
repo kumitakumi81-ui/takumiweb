@@ -1,12 +1,12 @@
-const CACHE_NAME = "takumi-staff-ai-v8";
+const CACHE_NAME = "takumi-staff-ai-v9";
 const APP_SHELL = [
   "./staff-ai.html",
   "./staff-ai.webmanifest",
   "./favicon.svg",
   "./assets/site.css",
-  "./assets/ai-studio.css?v=8",
-  "./assets/ai-studio-core.js?v=8",
-  "./assets/ai-studio.js?v=8"
+  "./assets/ai-studio.css?v=9",
+  "./assets/ai-studio-core.js?v=9",
+  "./assets/ai-studio.js?v=9"
 ];
 
 self.addEventListener("install", (event) => {

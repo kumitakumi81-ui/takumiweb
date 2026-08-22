@@ -461,7 +461,16 @@
     if (state.referenceFile) formData.append("reference", state.referenceFile);
 
     const response = await fetch(endpoint, { method: "POST", body: formData });
-    if (!response.ok) throw new Error(`AI生成に失敗しました: ${response.status}`);
+    if (!response.ok) {
+      let detail = "";
+      try {
+        const errPayload = await response.clone().json();
+        detail = errPayload.detail || errPayload.error || "";
+      } catch {
+        try { detail = (await response.clone().text()).slice(0, 300); } catch {}
+      }
+      throw new Error(`AI生成に失敗しました: ${response.status}${detail ? " / " + detail : ""}`);
+    }
 
     const contentType = response.headers.get("content-type") || "";
     if (contentType.startsWith("image/")) {
